@@ -5,7 +5,7 @@ function create_import_butt(stemid) {
   import_button.style.padding = '10px';
   import_button.id = 'ID: ' + stemid;
   import_button.innerHTML = 'Import';
-  import_button.addEventListener('click', extration);
+  import_button.addEventListener('click', google.script.run.withSuccessHandler(vali_data).searchColumnData("text_search"));
   element.appendChild(import_button);
 }
 function create_user_info(user, stemid) {
@@ -28,6 +28,15 @@ function replace_info(user) {
   const stemid = new Date().getTime();
   create_user_info(user.results, stemid);
   create_import_butt(stemid);
+  // storge data to local storage   
+}
+function vali_data(check_value) {
+  if (!check_value) {
+    extration()
+  }
+  else {
+    console.log("data alredy exist");
+  }
 }
 function extration(event) {
   var id = this.id;
@@ -36,7 +45,6 @@ function extration(event) {
   var text_array = [child[0].innerHTML, child[2].innerHTML, child[4].innerHTML, child[6].innerHTML, child[8].innerHTML];
   google.script.run.display_in_row(text_array);
 }
-
 function send_request() {
   google.script.run.withSuccessHandler(replace_info).get_user();
 }
