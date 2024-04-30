@@ -6,20 +6,31 @@ function show_admin_sidebar() {
   ui.showSidebar(html);
 }
 
-function get_user(){
-  var response = UrlFetchApp.fetch('https://randomuser.me/api/');
-  const data = JSON.parse(response.getContentText());
-  return data
-}
-function generating_id(message){
-  var key = "saleKey";
-  var cipher = Utilities.base64Encode(Utilities.computeHmacSha256Signature(message, key));
-  return cipher;
-}
-function display_in_row(text_array){
-  var sheet  = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  var recordId = generating_id(text_array[2]+text_array[4]);
-  text_array.push("ID : "+recordId);
-  sheet.appendRow(text_array);
+function get_user(keyword) {
+  var url = 'https://cloud.gmapsextractor.com/api/v1/search';
+  var token = 'gUGwrX9tTYBL4STjvdlAvYZQ8dzzz9M9cPf14PiPfIhRCDsv'; // Replace 'YOUR_TOKEN' with your actual token
+  var payload = {
+    q: keyword,
+    page: 1,
+    ll: '@23.0875893,112.3725638,11z',
+    hl: 'th',
+    gl: 'th'
+  };
 
+  var options = {
+    method: 'post',
+    contentType: 'application/json',
+    headers: {
+      Authorization: 'Bearer ' + token
+    },
+    payload: JSON.stringify(payload)
+  };
+
+  var response = UrlFetchApp.fetch(url, options);
+  var responseData = JSON.parse(response.getContentText());
+  return responseData
+}
+function display_in_row(text_array) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  sheet.appendRow(text_array);
 }
