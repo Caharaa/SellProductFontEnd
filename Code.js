@@ -30,6 +30,7 @@ function get_user(keyword) {
   var responseData = JSON.parse(response.getContentText());
   return responseData
 }
+
 function display_in_row(text_array) {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   sheet.appendRow(text_array);
