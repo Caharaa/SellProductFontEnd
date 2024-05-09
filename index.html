@@ -1,20 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base target="_top">
 </head>
 
 <body>
-    <script src="sidebar.js"></script>
-    <h2>Send Request</h2>
-    <input type="text" id="url" placeholder="Enter URL">
-    <button onclick="send_request()">Send</button>
-    <div id="Det">
-        <p>change file</p>
-    </div>
-    </div>
-</body>
-
-</html>
+  <h2>Search Form</h2>
+  <form id="searchForm" onsubmit="send_request(event)">
+    <label for="q">keyword:</label>
+    <input type="text" id="q" name="q"><br><br>
+    <label for="page">Page:</label>
+    <input type="number" id="page" name="page" value="1" min="1" max="10"><br><br>
+    <label for="hl">Language:</label>
+    <input type="text" id="hl" name="hl" value="th"><br><br>
+    <label for="gl">Geolocation:</label>
+    <input type="text" id="gl" name="gl" value="th"><br><br>
+    <input type="submit" value="Submit" style="margin: 5px; padding:5px;">
+  </form>
+  <button onclick="extraction_all()" style="margin: 5px; padding:5px;" >Import All</button>
+  <div id="Det">
+  </div>
+  
