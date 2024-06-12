@@ -8,7 +8,7 @@ function show_admin_sidebar() {
 
 function get_location(searchBody) {
   var url = 'https://cloud.gmapsextractor.com/api/v1/search';
-  var token = 'gUGwrX9tTYBL4STjvdlAvYZQ8dzzz9M9cPf14PiPfIhRCDsv'; // Replace 'YOUR_TOKEN' with your actual token
+  var token ='5677477'; // Replace 'YOUR_TOKEN' with your actual token
   var keyword = searchBody.query;
   var page = searchBody.page;
   var ll = searchBody.ll;
